@@ -28,4 +28,8 @@ public class Ladder {
         players.display(visitor);
         gameBoard.display(visitor);
     }
+
+    public void displayResult(LadderVisitor visitor) {
+
+    }
 }

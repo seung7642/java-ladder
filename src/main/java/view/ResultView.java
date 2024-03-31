@@ -41,6 +41,14 @@ public class ResultView implements LadderVisitor {
 
     @Override
     public void visitRewards(List<Reward> rewards) {
+        String result = rewards.stream()
+                .map(reward -> String.format("%5s", reward))
+                .collect(Collectors.joining(" "));
+        System.out.println(result);
+    }
 
+    public void result(Reward reward) {
+        System.out.println("\n실행 결과");
+        System.out.println(reward);
     }
 }
