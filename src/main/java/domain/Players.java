@@ -15,7 +15,7 @@ public class Players implements Iterable<Player> {
         return players.size();
     }
 
-    public void accept(LadderVisitor visitor) {
+    public void display(LadderVisitor visitor) {
         visitor.visit(players);
     }
 

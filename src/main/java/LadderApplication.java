@@ -10,7 +10,7 @@ public class LadderApplication {
     public static void main(String[] args) {
         Players players = InputView.promptForPlayer();
         Height height = InputView.promptForHeight();
-        Ladder ladder = Ladder.of(players, height, new RandomBridgeCreationStrategy());
+        Ladder ladder = Ladder.of(players, null, height);
 
         ResultView resultView = new ResultView();
         ladder.display(resultView);

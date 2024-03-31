@@ -2,21 +2,21 @@ package domain;
 
 public class Ladder {
 
-    private final Lines lines;
     private final Players players;
+    private final GameBoard gameBoard;
 
-    public Ladder(Lines lines, Players players) {
-        this.lines = lines;
+    public Ladder(Lines lines, Players players, Rewards rewards) {
+        this.gameBoard = new GameBoard(lines, rewards);
         this.players = players;
     }
 
-    public static Ladder of(Players players, Height height, BridgeCreationStrategy strategy) {
-        Lines lines = Lines.of(players.totalNumber(), height, strategy);
-        return new Ladder(lines, players);
+    public static Ladder of(Players players, Rewards rewards, Height height) {
+        Lines lines = Lines.of(players.totalNumber(), height, new RandomBridgeCreationStrategy());
+        return new Ladder(lines, players, rewards);
     }
 
     public void display(LadderVisitor visitor) {
-        players.accept(visitor);
-        lines.accept(visitor);
+        players.display(visitor);
+        gameBoard.display(visitor);
     }
 }
