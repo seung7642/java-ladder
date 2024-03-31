@@ -7,4 +7,6 @@ public interface LadderVisitor {
     void visit(List<Line> line, int height);
 
     void visit(List<Player> players);
+
+    void visitRewards(List<Reward> rewards);
 }
