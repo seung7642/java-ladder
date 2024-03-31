@@ -10,13 +10,18 @@ public class Lines implements Iterable<Line> {
     private final List<Line> lines;
     private final List<ConditionalMovement> conditionalMovements;
 
-    public Lines(List<Line> lines) {
+    private Lines(List<Line> lines) {
         this.lines = lines;
         conditionalMovements = List.of(
                 new ConditionalMovement((line, curHeight, column) -> column > 0 && lines.get(column - 1).hasBridge(curHeight), MovementDirection.LEFT::move),
                 new ConditionalMovement((line, curHeight, column) -> line.hasBridge(column), MovementDirection.RIGHT::move),
                 new ConditionalMovement((line, curHeight, column) -> true, MovementDirection.STAY::move)
         );
+    }
+
+    public static Lines of(List<Line> lines) {
+        removeBridgeIfPreviousBridgeExist(lines.size(), lines);
+        return new Lines(lines);
     }
 
     public static Lines of(int count, int height) {
@@ -50,7 +55,7 @@ public class Lines implements Iterable<Line> {
         int totalHeight = lines.get(0).height();
         int height = 0;
         Line current = lines.get(column);
-        while (height == totalHeight) {
+        while (height < totalHeight) {
             column = nextColumnPosition(current, height, column);
             current = lines.get(column);
             height++;

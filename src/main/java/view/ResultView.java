@@ -3,6 +3,7 @@ package view;
 import domain.LadderVisitor;
 import domain.Line;
 import domain.Player;
+import domain.Reward;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +37,10 @@ public class ResultView implements LadderVisitor {
                 .map(player -> String.format("%5s", player))
                 .collect(Collectors.joining(" "));
         System.out.println(result);
+    }
+
+    @Override
+    public void visitRewards(List<Reward> rewards) {
+
     }
 }
