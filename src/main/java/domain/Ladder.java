@@ -1,5 +1,7 @@
 package domain;
 
+import java.util.List;
+
 public class Ladder {
 
     private final Players players;
@@ -13,6 +15,13 @@ public class Ladder {
     public static Ladder of(Players players, Rewards rewards, Height height) {
         Lines lines = Lines.of(players.totalNumber(), height, new RandomBridgeCreationStrategy());
         return new Ladder(lines, players, rewards);
+    }
+
+    public Rewards play(Player player) {
+        if (player.isName("all")) {
+            return gameBoard.rewardAll();
+        }
+        return new Rewards(List.of(gameBoard.reward(players.position(player))));
     }
 
     public void display(LadderVisitor visitor) {

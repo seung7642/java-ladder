@@ -82,6 +82,10 @@ public class Lines implements Iterable<Line> {
         return lines.iterator();
     }
 
+    public int count() {
+        return this.lines.size();
+    }
+
     private enum MovementDirection {
         LEFT(column -> column - 1),
         RIGHT(column -> column + 1),
