@@ -23,4 +23,8 @@ public class Players implements Iterable<Player> {
     public Iterator<Player> iterator() {
         return players.iterator();
     }
+
+    public int position(Player player) {
+        return players.indexOf(player);
+    }
 }
